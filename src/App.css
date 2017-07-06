@@ -1,8 +1,29 @@
 .App {
+    text-align: left;
 }
 
+.App-logo {
+    height: 20px;
+    float: left;
+    margin-left: 10%;
+    padding: 15px 0;
+    -webkit-filter: brightness(100);
+}
 .App-header {
+    background-color: #404040;
+    height: 50px;
+    padding: 10px;
+    color: white;
+    font-size: 12px;
+    margin-right: 300px;
+    margin-left: 300px;
+    font-family: Arial;
+
 }
 
+/*
 .App-intro {
+    font-size: large;
+
 }
+*/
