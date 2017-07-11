@@ -1,7 +1,8 @@
-@import "/components/pui-variables.scss";
-
 .App {
     text-align: left;
+    background-color: white;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .App-logo {
@@ -11,24 +12,46 @@
     padding: 15px 0;
     -webkit-filter: brightness(100);
 }
+
 .App-header {
     background-color: #243641;
     height: 50px;
     padding: 10px;
     color: white;
     font-size: 12px;
-    margin-right: 300px;
-    margin-left: 300px;
-    font-family: Arial;
-
+    font-family: "Avenir Next";
+    font-weight: 100;
 }
 
-.App-intro {
-    font-size: large;
-
+.Table-contents {
+    margin-left: 120px;
+    margin-right: 120px;
+    font-family: "Avenir Next";
+    font-weight: 300;
 }
 
-h1 {
-    padding-top: 60px;
-    color: black;
+tr:nth-child(even) {
+    background-color: #F5F6F7;
+}
+
+td, th{
+    border-left : hidden !important;
+    border-right : hidden!important;
+}
+
+
+h3 {
+    color: #243641;
+    margin-top: 50px;
+    font-family: "Avenir Next";
+    font-weight: 400;
+    font-size: 26px;
+}
+
+div {
+    display: inline-block;
+}
+
+body {
+    background-color: #C5CED3;
 }

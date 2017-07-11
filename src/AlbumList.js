@@ -1,9 +1,33 @@
 import React, {Component} from 'react';
-const urlForAlbums = 'https://react-music.cfapps.io/albums.json'
+import {Table} from 'pui-react-table';
+const urlForAlbums = 'https://react-music.cfapps.io/albums.json';
+
+const columns = [
+    {
+        attribute: 'name',
+        displayName: 'Album Title',
+        sortable: true
+    },
+    {
+        attribute: 'artist',
+        displayName: 'Artist',
+        sortable: true
+    },
+    {
+        attribute: 'year',
+        displayName: 'Year',
+        sortable: true
+    },
+    {
+        attribute: 'genre',
+        displayName: 'Genre',
+        sortable: true
+    }
+];
 
 class AlbumList extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
         }
     }
@@ -20,19 +44,18 @@ class AlbumList extends Component {
             })
             .then(function(data){
                 console.log(data);
-                that.setState({rawData : JSON.stringify(data)})
+                that.setState({rawData : JSON.stringify(data.albums)});
                 console.log("logger", that.state)
             });
     }
 
     render(){
-
-        if(!this.state.rawData) return <p>Loading...</p>
+        if(!this.state.rawData) return <p>Loading...</p>;
         return (
             <div>
-                <h1>{this.state.rawData}</h1>
+                <Table style={{color: "#243641"}} columns={columns} data={JSON.parse(this.state.rawData)} defaultSort='instances'/>
             </div>
-    )
+        )
     }
 }
 
