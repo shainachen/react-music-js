@@ -10,14 +10,13 @@ class App extends Component {
                 <div className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h2>React Music</h2>
-                    <AlbumList></AlbumList>
+                    <AlbumList>AlbumList</AlbumList>
                 </div>
             </div>
         );
     }
 }
  export default App;
-
 /*
 class App extends Component {
   render() {

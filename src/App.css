@@ -4,7 +4,6 @@
     text-align: left;
 }
 
-
 .App-logo {
     height: 20px;
     float: left;
@@ -27,4 +26,9 @@
 .App-intro {
     font-size: large;
 
+}
+
+h1 {
+    padding-top: 60px;
+    color: black;
 }
