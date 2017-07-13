@@ -5,6 +5,8 @@
   "dependencies": {
     "@npmcorp/pui-css-colors": "^6.4.0",
     "pui-css-tables": "^8.3.1",
+    "pui-react-dropdowns": "^8.3.1",
+    "pui-react-iconography": "^8.3.1",
     "pui-react-table": "^8.3.1",
     "pui-react-tools": "^2.0.5",
     "react": "^15.6.1",
@@ -27,6 +29,8 @@
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
+    "pivotal-js-jasmine-matchers": "^0.1.1",
+    "react-svg-loader": "^1.1.1",
     "webpack": "^3.1.0"
   }
 }

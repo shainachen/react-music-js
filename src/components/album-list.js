@@ -50,6 +50,7 @@ class AlbumList extends Component {
     }
 
     render(){
+
         if(!this.state.rawData) return <p>Loading...</p>;
         return (
             <div>
