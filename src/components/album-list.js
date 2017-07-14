@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Table} from 'pui-react-table';
+import '../stylesheets/app.css';
 const urlForAlbums = 'https://react-music.cfapps.io/albums.json';
+
 
 const columns = [
     {
@@ -44,7 +46,7 @@ class AlbumList extends Component {
             })
             .then(function(data){
                 console.log(data);
-                that.setState({rawData : JSON.stringify(data.albums)});
+                that.setState({rawData : JSON.stringify(data)});
                 console.log("logger", that.state)
             });
     }

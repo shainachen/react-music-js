@@ -1,0 +1,8 @@
+tr:nth-child(even) {
+    background-color: #F5F6F7;
+}
+
+td, th{
+    border-left : hidden !important;
+    border-right : hidden !important;
+}
