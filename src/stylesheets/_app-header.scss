@@ -1,15 +1,19 @@
 .app-header {
-  background-color: #243641;
+  background-color: $dark-2;
   color: white;
-  font-size: 12px;
-  font-family: "Avenir Next";
-  font-weight: 100;
   height: 50px;
   width: 100%;
 }
 
-.app-header > h2 {
+.app-header > div {
   font-weight: 300;
+}
+
+.header-text {
+  font-size: 22px;
+  font-family: "Avenir Next";
+  font-weight: 300;
+  margin-top: 15.8px;
 }
 
 .app-logo.icon {

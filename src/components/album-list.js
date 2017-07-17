@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Table} from 'pui-react-table';
-import '../stylesheets/app.css';
+import DropdownMenu from "./dropdown";
+
 const urlForAlbums = 'https://react-music.cfapps.io/albums.json';
 
 
@@ -24,6 +25,10 @@ const columns = [
         attribute: 'genre',
         displayName: 'Genre',
         sortable: true
+    },
+    {
+        attribute: '',
+        CustomCell: DropdownMenu
     }
 ];
 
@@ -39,11 +44,11 @@ class AlbumList extends Component {
 
         fetch(urlForAlbums)
             .then(function(response) {
-                if (response.status >= 400) {
-                    throw new Error("Bad response from server");
-                }
-                return response.json();
-            })
+            if (response.status >= 400) {
+                throw new Error("Bad response from server");
+            }
+            return response.json();
+        })
             .then(function(data){
                 console.log(data);
                 that.setState({rawData : JSON.stringify(data)});

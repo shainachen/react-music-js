@@ -10,6 +10,7 @@
     "pui-css-tables": "^8.3.1",
     "pui-react-dropdowns": "^8.3.1",
     "pui-react-iconography": "^8.3.1",
+    "pui-react-inputs": "^8.3.1",
     "pui-react-table": "^8.3.1",
     "pui-react-tools": "^2.0.5",
     "react": "^15.6.1",
