@@ -11,5 +11,4 @@ class AppHeader extends Component {
         )
     }
 }
-
 export default AppHeader;

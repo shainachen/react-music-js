@@ -4,7 +4,6 @@ import DropdownMenu from "./dropdown";
 
 const urlForAlbums = 'https://react-music.cfapps.io/albums.json';
 
-
 const columns = [
     {
         attribute: 'name',
@@ -57,7 +56,6 @@ class AlbumList extends Component {
     }
 
     render(){
-
         if(!this.state.rawData) return <p>Loading...</p>;
         return (
             <div>

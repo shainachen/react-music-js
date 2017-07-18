@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppHeader from "./app-header";
-import AppBody from "./app-body"
+import AppBody from "./app-body";
 import '../stylesheets/app.css';
 
 class App extends Component {
@@ -14,4 +14,4 @@ class App extends Component {
     }
 }
 
- export default App;
+export default App;
