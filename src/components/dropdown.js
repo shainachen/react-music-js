@@ -65,24 +65,28 @@ class DropdownMenu extends Component {
                            onHide={() => this.setState({modalOpen: false})}>
                     <ModalBody>
                         <Input label="Album Title"
+                               className="edit-input"
                                errorMessage="Please input a valid album title"
                                placeholder={this.state.titleInput}
                                onChange={event => this.setState({titleInput: event.target.value})}
                                displayError={!this.state.titleInput}
                                autoFocus/> <p/>
                         <Input label="Artist"
+                               className="edit-input"
                                errorMessage="Please input a valid artist"
                                placeholder={this.state.artistInput}
                                onChange={event => this.setState({artistInput: event.target.value})}
                                displayError={!this.state.artistInput}
                                autoFocus/> <p/>
                         <Input label="Release Year"
+                               className="edit-input"
                                errorMessage="Please input a valid year"
                                placeholder={this.state.yearInput}
                                onChange={event => this.setState({yearInput: event.target.value})}
                                displayError={this.state.yearInput && !isNaN(this.state.yearInput) ? false : true}
                                autoFocus/> <p/>
                         <Input label="Genre"
+                               className="edit-input"
                                errorMessage="Please input a valid genre"
                                placeholder={this.state.genreInput}
                                onChange={event => this.setState({genreInput: event.target.value})}

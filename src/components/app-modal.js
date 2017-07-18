@@ -59,25 +59,29 @@ class AppModal extends Component {
                            onHide={() => this.setState({modalOpen: false})}>
                     <ModalBody>
                                 <Input label="Album Title"
+                                       className="album-input"
                                        errorMessage="Please input a valid album title"
                                        onChange={event => this.setState({titleInput: event.target.value})}
                                        displayError={!this.state.titleInput}
-                                       autoFocus/><p/>
-                            <Input label="Artist"
-                                   errorMessage="Please input a valid artist"
-                                   onChange={event => this.setState({artistInput: event.target.value})}
-                                   displayError={!this.state.artistInput}
-                                   autoFocus/><p/>
-                            <Input label="Release Year"
-                                   errorMessage="Please input a valid year"
-                                   onChange={event => this.setState({yearInput: event.target.value})}
-                                   displayError={this.state.yearInput && !isNaN(this.state.yearInput) ? false : true}
-                                   autoFocus/><p/>
-                            <Input label="Genre"
-                                   errorMessage="Please input a valid genre"
-                                   onChange={event => this.setState({genreInput: event.target.value})}
-                                   displayError={!this.state.genreInput}
-                                   autoFocus/><p/>
+                                       autoFocus/>
+                                <Input label="Artist"
+                                       className="album-input"
+                                       errorMessage="Please input a valid artist"
+                                       onChange={event => this.setState({artistInput: event.target.value})}
+                                       displayError={!this.state.artistInput}
+                                       autoFocus/>
+                                <Input label="Release Year"
+                                       className="album-input"
+                                       errorMessage="Please input a valid year"
+                                       onChange={event => this.setState({yearInput: event.target.value})}
+                                       displayError={this.state.yearInput && !isNaN(this.state.yearInput) ? false : true}
+                                       autoFocus/>
+                                <Input label="Genre"
+                                       className="album-input"
+                                       errorMessage="Please input a valid genre"
+                                       onChange={event => this.setState({genreInput: event.target.value})}
+                                       displayError={!this.state.genreInput}
+                                       autoFocus/>
                     </ModalBody>
                     <ModalFooter className="modal-buttons">
                         <PrimaryButton alt large className="cancel-button" onClick={() => this.setState({
