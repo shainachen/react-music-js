@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import DataFetcher from "../data-fetcher";
 import {Dropdown, DropdownItem} from "pui-react-dropdowns";
 import {BaseModal, ModalBody, ModalFooter} from "pui-react-modals";
 import {Input} from "pui-react-inputs";
@@ -31,12 +32,15 @@ class DropdownMenu extends Component {
 
     }
 
-    deleteAlbum(id){
+    async deleteAlbum(id){
         debugger;
-        //this.context.$store.refine('rawData').
-        return fetch(urlForAlbums + id, {
+        await fetch(urlForAlbums + id, {
             method: 'DELETE'
-        })
+        });
+        const newData = await DataFetcher.fetch(urlForAlbums);
+        console.log("new data:",newData);
+        return this.context.$store.set({rawData: newData})
+
     }
 
     async editAlbum(titleInput, artistInput, yearInput, genreInput, id) {
