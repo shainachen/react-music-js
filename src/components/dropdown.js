@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {Dropdown, DropdownItem} from "pui-react-dropdowns";
 import {BaseModal, ModalBody, ModalFooter} from "pui-react-modals";
 import {Input} from "pui-react-inputs";
@@ -6,40 +7,15 @@ import {PrimaryButton} from "pui-react-buttons";
 
 const urlForAlbums = 'http://react-music.cfapps.io/albums/';
 
-function deleteAlbum(id){
-    fetch(urlForAlbums + id, {
-        method: 'DELETE'
-    }).then(function(){
-        return window.location.reload();
-    })
-}
-
-function editAlbum(titleInput, artistInput, yearInput, genreInput, id) {
-    var payload ={
-        "name": titleInput,
-        "artist": artistInput,
-        "year": yearInput,
-        "genre": genreInput
-    };
-    fetch(urlForAlbums +id, {
-        method: 'PUT',
-        body: JSON.stringify(payload)
-    }).then(function(){
-        return window.location.reload();
-    })
-}
-
-function checkAll(titleInput, artistInput, yearInput, genreInput, id) {
-    if (titleInput && artistInput && yearInput && genreInput) {
-        if (!isNaN(yearInput)) {
-            editAlbum(titleInput, artistInput, yearInput, genreInput, id);
-            return true;
-        }
-    }
-    return false;
-}
-
 class DropdownMenu extends Component {
+    static contextTypes = {
+      $store: PropTypes.object
+    };
+
+    // componentDidMount() {
+    //   this.context.$store.set('foo', 'bar')
+    // }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -49,14 +25,52 @@ class DropdownMenu extends Component {
             yearInput: this.props.rowDatum.year,
             genreInput: this.props.rowDatum.genre
         };
+        this.deleteAlbum.bind(this);
+        this.editAlbum.bind(this);
+        this.checkAll.bind(this);
+
+    }
+
+    deleteAlbum(id){
+        debugger;
+        //this.context.$store.refine('rawData').
+        return fetch(urlForAlbums + id, {
+            method: 'DELETE'
+        })
+    }
+
+    async editAlbum(titleInput, artistInput, yearInput, genreInput, id) {
+        var payload ={
+            "name": titleInput,
+            "artist": artistInput,
+            "year": yearInput,
+            "genre": genreInput
+        };
+
+
+        return fetch(urlForAlbums + id, {
+            method: 'PUT',
+            body: JSON.stringify(payload)
+        })
+    }
+
+    checkAll(titleInput, artistInput, yearInput, genreInput, id) {
+        if (titleInput && artistInput && yearInput && genreInput) {
+            if (!isNaN(yearInput)) {
+                this.editAlbum(titleInput, artistInput, yearInput, genreInput, id);
+                return true;
+            }
+        }
+        return false;
     }
 
     render() {
+        // this.context.$store.set('foo', 'bar');
         return (
             <div className="form-group">
                 <Dropdown icon='more_vert' menuAlign='left' className="dropdownIcon" style={{}}>
                     <DropdownItem onClick={() => this.setState({modalOpen: true})} >Edit</DropdownItem>
-                    <DropdownItem onClick={() => {deleteAlbum(this.props.rowDatum.id)}}>Delete</DropdownItem>
+                    <DropdownItem onClick={() => {this.deleteAlbum(this.props.rowDatum.id)}}>Delete</DropdownItem>
                 </Dropdown>
                 <BaseModal acquireFocus={false}
                            title='Edit an album'
@@ -104,7 +118,7 @@ class DropdownMenu extends Component {
                             Cancel
                         </PrimaryButton>
                         <PrimaryButton large className="edit-button"
-                                       onClick={() => checkAll(this.state.titleInput, this.state.artistInput, this.state.yearInput, this.state.genreInput, this.props.rowDatum.id) ? this.setState({
+                                       onClick={() => this.checkAll(this.state.titleInput, this.state.artistInput, this.state.yearInput, this.state.genreInput, this.props.rowDatum.id) ? this.setState({
                                            modalOpen: false})
                                            :this.setState({modalOpen: true})}> Edit
                         </PrimaryButton>

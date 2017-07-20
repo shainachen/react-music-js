@@ -6,8 +6,28 @@ td, th{
     border-left : hidden !important;
     border-right : hidden !important;
 }
+.year-column{
+    width: 10%;
+}
+
+.title-column{
+    width: 35%;
+}
+
+.genre-column{
+    width: 10%;
+}
+
+.artist-column{
+    width: 35%;
+}
+
+.button-column{
+    width: 10%;
+}
 
 .table{
     border-left : hidden;
     border-right : hidden;
+    table-layout: fixed;
 }

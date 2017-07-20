@@ -1,65 +1,70 @@
 import React, {Component} from 'react';
+import PropTypes from "prop-types";
 import {Table} from 'pui-react-table';
 import DropdownMenu from "./dropdown";
 
-const urlForAlbums = 'https://react-music.cfapps.io/albums.json';
+const types = require('prop-types');
 
-const columns = [
-    {
-        attribute: 'name',
-        displayName: 'Album Title',
-        sortable: true
-    },
-    {
-        attribute: 'artist',
-        displayName: 'Artist',
-        sortable: true
-    },
-    {
-        attribute: 'year',
-        displayName: 'Year',
-        sortable: true
-    },
-    {
-        attribute: 'genre',
-        displayName: 'Genre',
-        sortable: true
-    },
-    {
-        attribute: '',
-        CustomCell: DropdownMenu
-    }
-];
+function update(){
+    this.setState();
+}
 
 class AlbumList extends Component {
+    static contextTypes = {
+        $store: PropTypes.object
+    };
+
     constructor(props) {
         super(props);
-        this.state = {
-        }
     }
 
-    componentDidMount() {
-        const that = this;
-
-        fetch(urlForAlbums)
-            .then(function(response) {
-            if (response.status >= 400) {
-                throw new Error("Bad response from server");
-            }
-            return response.json();
-        })
-            .then(function(data){
-                console.log(data);
-                that.setState({rawData : JSON.stringify(data)});
-                console.log("logger", that.state)
-            });
-    }
+    // static propTypes = {
+    //     rawData: types.string.isRequired
+    // };
 
     render(){
-        if(!this.state.rawData) return <p>Loading...</p>;
+        if(!this.context.$store.refine('rawData').get()) return <p>Loading...</p>;
+
+        //const dropdownMenuWithProps = <DropdownMenu rawData = {this.props.rawData}/>;
+
+
+        const columns = [
+            {
+                attribute: 'name',
+                displayName: 'Album Title',
+                sortable: true,
+                cellClass: "title-column"
+            },
+            {
+                attribute: 'artist',
+                displayName: 'Artist',
+                sortable: true,
+                cellClass: "artist-column"
+            },
+            {
+                attribute: 'year',
+                displayName: 'Year',
+                sortable: true,
+                cellClass: "year-column"
+            },
+            {
+                attribute: 'genre',
+                displayName: 'Genre',
+                sortable: true,
+                cellClass: "genre-column"
+            },
+            {
+                attribute: '',
+                CustomCell: DropdownMenu,
+                // CustomCell: () => dropdownMenuWithProps,
+                cellClass: "button-column"
+            }
+        ];
+
+
         return (
             <div>
-                <Table style={{color: "#243641"}} columns={columns} data={JSON.parse(this.state.rawData)} defaultSort='instances'/>
+                <Table style={{color: "#243641"}} columns={columns} data={JSON.parse(this.context.$store.refine('rawData').get())} defaultSort='instances'/>
             </div>
         )
     }
