@@ -33,12 +33,10 @@ class DropdownMenu extends Component {
     }
 
     async deleteAlbum(id){
-        debugger;
         await fetch(urlForAlbums + id, {
             method: 'DELETE'
         });
         const newData = await DataFetcher.fetch(urlForAlbums);
-        console.log("new data:",newData);
         return this.context.$store.set({rawData: newData})
 
     }
@@ -50,12 +48,12 @@ class DropdownMenu extends Component {
             "year": yearInput,
             "genre": genreInput
         };
-
-
-        return fetch(urlForAlbums + id, {
+        await fetch(urlForAlbums + id, {
             method: 'PUT',
             body: JSON.stringify(payload)
-        })
+        });
+        const newData = await DataFetcher.fetch(urlForAlbums);
+        return this.context.$store.set({rawData: newData})
     }
 
     checkAll(titleInput, artistInput, yearInput, genreInput, id) {

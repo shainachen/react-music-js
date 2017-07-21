@@ -3,35 +3,19 @@ import {BaseModal, ModalBody, ModalFooter} from 'pui-react-modals';
 import {Input} from "pui-react-inputs";
 import {PrimaryButton} from "pui-react-buttons";
 import {Icon} from "pui-react-iconography";
-
+import DataFetcher from "../data-fetcher";
+import PropTypes from "prop-types";
 const urlForAlbums = 'http://react-music.cfapps.io/albums/';
 
-function addAlbum(titleInput, artistInput, yearInput, genreInput) {
-    var payload = {
-        "name": titleInput,
-        "artist": artistInput,
-        "year": yearInput,
-        "genre": genreInput
-    };
-    fetch(urlForAlbums, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-    }).then(function () {
-        return window.location.reload();
-    })
-}
 
-function checkAll(titleInput, artistInput, yearInput, genreInput) {
-    if (titleInput && artistInput && yearInput && genreInput) {
-        if (!isNaN(yearInput)) {
-            addAlbum(titleInput, artistInput, yearInput, genreInput);
-            return true;
-        }
-    }
-    return false;
-}
 
 class AppModal extends Component {
+
+    static contextTypes = {
+        $store: PropTypes.object
+    };
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -41,6 +25,37 @@ class AppModal extends Component {
             yearInput: "",
             genreInput: ""
         };
+        this.addAlbum.bind(this);
+        this.checkAll.bind(this);
+
+    }
+
+    async addAlbum(titleInput, artistInput, yearInput, genreInput) {
+        var payload = {
+            "name": titleInput,
+            "artist": artistInput,
+            "year": yearInput,
+            "genre": genreInput
+        };
+        fetch(urlForAlbums, {
+            method: 'POST',
+            body: JSON.stringify(payload)
+        });
+
+        const newData = await DataFetcher.fetch(urlForAlbums);
+        return this.context.$store.set({rawData: newData})
+
+
+    }
+
+    checkAll(titleInput, artistInput, yearInput, genreInput) {
+        if (titleInput && artistInput && yearInput && genreInput) {
+            if (!isNaN(yearInput)) {
+                this.addAlbum(titleInput, artistInput, yearInput, genreInput);
+                return true;
+            }
+        }
+        return false;
     }
 
     render() {
@@ -94,7 +109,7 @@ class AppModal extends Component {
                             Cancel
                         </PrimaryButton>
                         <PrimaryButton large className="add-button"
-                                       onClick={() => checkAll(this.state.titleInput, this.state.artistInput, this.state.yearInput, this.state.genreInput) ? this.setState({
+                                       onClick={() => this.checkAll(this.state.titleInput, this.state.artistInput, this.state.yearInput, this.state.genreInput) ? this.setState({
                                            modalOpen: false, titleInput: "",
                                            artistInput: "",
                                            yearInput: "",
