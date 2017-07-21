@@ -7,28 +7,21 @@ import AppModal from "./app-modal";
 const urlForAlbums = 'https://react-music.cfapps.io/albums.json';
 
 class AppBody extends Component {
+
+    constructor(props, context) {
+        super(props, context);
+    };
+
     static contextTypes = {
         $store: PropTypes.object
     };
 
-
-    constructor(props, context) {
-        super(props, context);
-        // this.state = {
-        //     rawData: ""
-        // }
-    }
-
     async componentDidMount() {
         const data = await DataFetcher.fetch(urlForAlbums);
         this.context.$store.set({rawData: data});
-
-        //this.setState({rawData: data});
-    }
+    };
 
     render() {
-        //const {rawData} = this.state;
-
         return (
             <div className="app-body">
                 <h3>Albums</h3>
@@ -36,7 +29,7 @@ class AppBody extends Component {
                 <AlbumList/>
             </div>
         )
-    }
+    };
 }
 
 export default AppBody;

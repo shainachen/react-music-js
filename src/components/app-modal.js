@@ -5,16 +5,10 @@ import {PrimaryButton} from "pui-react-buttons";
 import {Icon} from "pui-react-iconography";
 import DataFetcher from "../data-fetcher";
 import PropTypes from "prop-types";
+
 const urlForAlbums = 'http://react-music.cfapps.io/albums/';
 
-
-
 class AppModal extends Component {
-
-    static contextTypes = {
-        $store: PropTypes.object
-    };
-
 
     constructor(props) {
         super(props);
@@ -27,16 +21,20 @@ class AppModal extends Component {
         };
         this.addAlbum.bind(this);
         this.checkAll.bind(this);
+    };
 
-    }
+    static contextTypes = {
+        $store: PropTypes.object
+    };
 
-    async addAlbum(titleInput, artistInput, yearInput, genreInput) {
-        var payload = {
-            "name": titleInput,
-            "artist": artistInput,
-            "year": yearInput,
-            "genre": genreInput
+    async addAlbum() {
+        var payload ={
+            "name": this.state.titleInput,
+            "artist": this.state.artistInput,
+            "year": this.state.yearInput,
+            "genre": this.state.genreInput
         };
+
         fetch(urlForAlbums, {
             method: 'POST',
             body: JSON.stringify(payload)
@@ -44,27 +42,24 @@ class AppModal extends Component {
 
         const newData = await DataFetcher.fetch(urlForAlbums);
         return this.context.$store.set({rawData: newData})
+    };
 
-
-    }
-
-    checkAll(titleInput, artistInput, yearInput, genreInput) {
-        if (titleInput && artistInput && yearInput && genreInput) {
-            if (!isNaN(yearInput)) {
-                this.addAlbum(titleInput, artistInput, yearInput, genreInput);
+    checkAll() {
+        if (this.state.titleInput && this.state.artistInput && this.state.yearInput && this.state.genreInput) {
+            if (!isNaN(this.state.yearInput)) {
+                this.addAlbum();
                 return true;
             }
         }
         return false;
-    }
+    };
 
     render() {
         return (
             <div>
                 <div>
-                    <PrimaryButton large className="add-button" icon={<Icon src="add"/>}
-                                   onClick={() => this.setState({modalOpen: true})}>
-                        Add Album
+                    <PrimaryButton className="add-button" icon={<Icon src="add"/>}
+                                   onClick={() => this.setState({modalOpen: true})}> Add Album
                     </PrimaryButton>
                 </div>
                 <BaseModal acquireFocus={false}
@@ -74,49 +69,43 @@ class AppModal extends Component {
                            onHide={() => this.setState({modalOpen: false})}>
                     <ModalBody>
                                 <Input label="Album Title"
-                                       className="album-input"
                                        errorMessage="Please input a valid album title"
                                        onChange={event => this.setState({titleInput: event.target.value})}
                                        displayError={!this.state.titleInput}
                                        autoFocus/>
                                 <Input label="Artist"
-                                       className="album-input"
                                        errorMessage="Please input a valid artist"
                                        onChange={event => this.setState({artistInput: event.target.value})}
                                        displayError={!this.state.artistInput}
                                        autoFocus/>
                                 <Input label="Release Year"
-                                       className="album-input"
                                        errorMessage="Please input a valid year"
                                        onChange={event => this.setState({yearInput: event.target.value})}
                                        displayError={this.state.yearInput && !isNaN(this.state.yearInput) ? false : true}
                                        autoFocus/>
                                 <Input label="Genre"
-                                       className="album-input"
                                        errorMessage="Please input a valid genre"
                                        onChange={event => this.setState({genreInput: event.target.value})}
                                        displayError={!this.state.genreInput}
                                        autoFocus/>
                     </ModalBody>
                     <ModalFooter className="modal-buttons">
-                        <PrimaryButton alt large className="cancel-button" onClick={() => this.setState({
+                        <PrimaryButton alt className="cancel-button" onClick={() => this.setState({
                             modalOpen: false,
                             titleInput: "",
                             artistInput: "",
                             yearInput: "",
                             genreInput: ""
-                        })}>
-                            Cancel
+                        })}> Cancel
                         </PrimaryButton>
-                        <PrimaryButton large className="add-button"
-                                       onClick={() => this.checkAll(this.state.titleInput, this.state.artistInput, this.state.yearInput, this.state.genreInput) ? this.setState({
+                        <PrimaryButton className="add-button"
+                                       onClick={() => this.checkAll() ? this.setState({
                                            modalOpen: false, titleInput: "",
                                            artistInput: "",
                                            yearInput: "",
                                            genreInput: ""
                                        })
-                                           : this.setState({modalOpen: true})}>
-                            Add
+                                           : this.setState({modalOpen: true})}> Add
                         </PrimaryButton>
                     </ModalFooter>
                 </BaseModal>

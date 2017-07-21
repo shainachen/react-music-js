@@ -5,28 +5,18 @@ import DropdownMenu from "./dropdown";
 
 const types = require('prop-types');
 
-function update(){
-    this.setState();
-}
-
 class AlbumList extends Component {
-    static contextTypes = {
-        $store: PropTypes.object
-    };
 
     constructor(props) {
         super(props);
     }
 
-    // static propTypes = {
-    //     rawData: types.string.isRequired
-    // };
+    static contextTypes = {
+        $store: PropTypes.object
+    };
 
     render(){
         if(!this.context.$store.refine('rawData').get()) return <p>Loading...</p>;
-
-        //const dropdownMenuWithProps = <DropdownMenu rawData = {this.props.rawData}/>;
-
 
         const columns = [
             {
@@ -56,11 +46,9 @@ class AlbumList extends Component {
             {
                 attribute: '',
                 CustomCell: DropdownMenu,
-                // CustomCell: () => dropdownMenuWithProps,
                 cellClass: "button-column"
             }
         ];
-
 
         return (
             <div>

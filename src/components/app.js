@@ -6,14 +6,15 @@ import '../stylesheets/app.css';
 import Cursor from 'pui-cursor';
 
 class App extends Component {
-    static childContextTypes = {
-        $store: PropTypes.object
-    };
 
     constructor(props, context) {
         super(props, context);
         this.state = {store: {}};
-    }
+    };
+
+    static childContextTypes = {
+        $store: PropTypes.object
+    };
 
     getChildContext() {
         return {$store: this.$store};
