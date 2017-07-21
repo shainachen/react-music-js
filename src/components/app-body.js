@@ -4,7 +4,7 @@ import DataFetcher from '../data-fetcher';
 import AlbumList from "./album-list";
 import AppModal from "./app-modal";
 
-const urlForAlbums = 'https://react-music.cfapps.io/albums.json';
+const urlForAlbums = 'https://react-music.cfapps.io/albums/';
 
 class AppBody extends Component {
 
