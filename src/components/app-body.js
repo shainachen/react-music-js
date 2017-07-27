@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import DataFetcher from '../data-fetcher';
 import AlbumList from "./album-list";
 import AppModal from "./app-modal";
+import {Grid, FlexCol} from 'pui-react-flex-grids';
 
-const urlForAlbums = 'https://react-music.cfapps.io/albums/';
+
+const urlForAlbums = 'http://localhost:8080/albums/';
 
 class AppBody extends Component {
 
@@ -23,8 +25,8 @@ class AppBody extends Component {
 
     render() {
         return (
-            <div className="app-body">
-                <h3>Albums</h3>
+            <div className="app-body phxl">
+                <h1 className="pvxxl">Albums</h1>
                 <AppModal/>
                 <AlbumList/>
             </div>

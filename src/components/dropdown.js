@@ -6,7 +6,7 @@ import {BaseModal, ModalBody, ModalFooter} from "pui-react-modals";
 import {Input} from "pui-react-inputs";
 import {PrimaryButton} from "pui-react-buttons";
 
-const urlForAlbums = 'http://react-music.cfapps.io/albums/';
+const urlForAlbums = 'http://localhost:8080/albums/';
 
 class DropdownMenu extends Component {
 
@@ -30,6 +30,7 @@ class DropdownMenu extends Component {
     };
 
     async deleteAlbum(){
+        console.log("ID", this.props.rowDatum.id);
         await fetch(urlForAlbums + this.props.rowDatum.id, {
             method: 'DELETE'
         });
@@ -66,8 +67,8 @@ class DropdownMenu extends Component {
 
     render() {
         return (
-            <div className="form-group">
-                <Dropdown icon='more_vert' menuAlign='left' className="dropdownIcon" style={{}}>
+            <td className="form-group plxxxxl">
+                <Dropdown icon='more_vert' menuAlign='left' className="dropdownIcon" size="small">
                     <DropdownItem onClick={() => this.setState({
                         modalOpen: true,
                         titleInput: this.props.rowDatum.name,
@@ -124,7 +125,7 @@ class DropdownMenu extends Component {
                         </PrimaryButton>
                     </ModalFooter>
                 </BaseModal>
-            </div>
+            </td>
         );
     }
 }

@@ -1,13 +1,11 @@
 .app-body > h3 {
     color: $dark-2;
-    margin-top: 30px;
-    padding-bottom: 30px;
-    font-weight: 400;
     font-size: 26px;
 }
 
 .app-body {
-    margin-left: 120px;
-    margin-right: 120px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: 300;
 }

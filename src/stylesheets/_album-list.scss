@@ -6,6 +6,10 @@ td, th{
     border-left : hidden !important;
     border-right : hidden !important;
 }
+
+th{
+    border-top: hidden;
+}
 .year-column{
     width: 10%;
 }
@@ -27,7 +31,5 @@ td, th{
 }
 
 .table{
-    border-left : hidden;
-    border-right : hidden;
     table-layout: fixed;
 }

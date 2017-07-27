@@ -6,7 +6,7 @@ import {Icon} from "pui-react-iconography";
 import DataFetcher from "../data-fetcher";
 import PropTypes from "prop-types";
 
-const urlForAlbums = 'http://react-music.cfapps.io/albums/';
+const urlForAlbums = 'http://localhost:8080/albums/';
 
 class AppModal extends Component {
 

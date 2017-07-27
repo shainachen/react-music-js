@@ -52,7 +52,7 @@ class AlbumList extends Component {
 
         return (
             <div>
-                <Table style={{color: "#243641"}} columns={columns} data={JSON.parse(this.context.$store.refine('rawData').get())} defaultSort='instances'/>
+                <Table className="em-default" style={{color: "#243641"}} columns={columns} data={JSON.parse(this.context.$store.refine('rawData').get())} defaultSort='instances'/>
             </div>
         )
     }

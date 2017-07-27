@@ -5,8 +5,17 @@ class AppHeader extends Component {
     render() {
         return (
             <div className="app-header">
-                <Icon className="app-logo" src="react"/>
-                <div className="header-text">React Music</div>
+                <div className="app-header-container phxl grid">
+                    <div className="col col-middle">
+                        <div className="header-text">
+                            <Icon className="app-logo mrm" src="react" verticalAlign="baseline"/>
+                            React Music
+                        </div>
+                    </div>
+                    <div className="col col-fixed col-middle header-text">
+                            <Icon className="app-info" src="info_outline"/>
+                    </div>
+                </div>
             </div>
         )
     }
