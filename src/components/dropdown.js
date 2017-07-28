@@ -6,7 +6,7 @@ import {BaseModal, ModalBody, ModalFooter} from "pui-react-modals";
 import {Input} from "pui-react-inputs";
 import {PrimaryButton} from "pui-react-buttons";
 
-const urlForAlbums = 'http://localhost:8080/albums/';
+const urlForAlbums = 'http://react-music.cfapps.io/albums/';
 
 class DropdownMenu extends Component {
 

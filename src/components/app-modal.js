@@ -6,7 +6,7 @@ import {Icon} from "pui-react-iconography";
 import DataFetcher from "../data-fetcher";
 import PropTypes from "prop-types";
 
-const urlForAlbums = 'http://localhost:8080/albums/';
+const urlForAlbums = 'http://react-music.cfapps.io/albums/';
 
 class AppModal extends Component {
 
@@ -17,14 +17,24 @@ class AppModal extends Component {
             titleInput: "",
             artistInput: "",
             yearInput: "",
-            genreInput: ""
+            genreInput: "",
+            validTitle: true,
+            validArtist: true,
+            validYear: true,
+            validGenre: true
         };
         this.addAlbum.bind(this);
         this.checkAll.bind(this);
+        this.validate.bind(this);
+        this.resetStates.bind(this);
     };
 
     static contextTypes = {
         $store: PropTypes.object
+    };
+
+    validate(fieldInput) {
+        return fieldInput
     };
 
     async addAlbum() {
@@ -51,7 +61,25 @@ class AppModal extends Component {
                 return true;
             }
         }
-        return false;
+        else {
+            this.setState({validTitle: this.validate(this.state.titleInput),
+                validArtist: this.validate(this.state.artistInput),
+                validYear: this.validate(this.state.yearInput),
+                validGenre: this.validate(this.state.genreInput)});
+            return false;
+        }
+    };
+
+    resetStates(){
+        this.setState({modalOpen: false,
+            titleInput: "",
+            artistInput: "",
+            yearInput: "",
+            genreInput: "",
+            validTitle: true,
+            validArtist: true,
+            validYear: true,
+            validGenre: true});
     };
 
     render() {
@@ -66,45 +94,34 @@ class AppModal extends Component {
                            title='Add an album'
                            className='add-modal'
                            show={this.state.modalOpen}
-                           onHide={() => this.setState({modalOpen: false})}>
+                           onHide={() => this.resetStates()}>
                     <ModalBody>
                                 <Input label="Album Title"
                                        errorMessage="Please input a valid album title"
                                        onChange={event => this.setState({titleInput: event.target.value})}
-                                       displayError={!this.state.titleInput}
+                                       displayError={!this.state.validTitle}
                                        autoFocus/>
                                 <Input label="Artist"
                                        errorMessage="Please input a valid artist"
                                        onChange={event => this.setState({artistInput: event.target.value})}
-                                       displayError={!this.state.artistInput}
+                                       displayError={!this.state.validArtist}
                                        autoFocus/>
                                 <Input label="Release Year"
                                        errorMessage="Please input a valid year"
                                        onChange={event => this.setState({yearInput: event.target.value})}
-                                       displayError={this.state.yearInput && !isNaN(this.state.yearInput) ? false : true}
+                                       displayError={this.state.validYear && !isNaN(this.state.yearInput) ? false : true}
                                        autoFocus/>
                                 <Input label="Genre"
                                        errorMessage="Please input a valid genre"
                                        onChange={event => this.setState({genreInput: event.target.value})}
-                                       displayError={!this.state.genreInput}
+                                       displayError={!this.state.validGenre}
                                        autoFocus/>
                     </ModalBody>
                     <ModalFooter className="modal-buttons">
-                        <PrimaryButton alt className="cancel-button" onClick={() => this.setState({
-                            modalOpen: false,
-                            titleInput: "",
-                            artistInput: "",
-                            yearInput: "",
-                            genreInput: ""
-                        })}> Cancel
+                        <PrimaryButton alt className="cancel-button" onClick={() => this.resetStates()}> Cancel
                         </PrimaryButton>
                         <PrimaryButton className="add-button"
-                                       onClick={() => this.checkAll() ? this.setState({
-                                           modalOpen: false, titleInput: "",
-                                           artistInput: "",
-                                           yearInput: "",
-                                           genreInput: ""
-                                       })
+                                       onClick={() => this.checkAll() ? this.resetStates()
                                            : this.setState({modalOpen: true})}> Add
                         </PrimaryButton>
                     </ModalFooter>

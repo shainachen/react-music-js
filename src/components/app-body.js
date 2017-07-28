@@ -6,7 +6,7 @@ import AppModal from "./app-modal";
 import {Grid, FlexCol} from 'pui-react-flex-grids';
 
 
-const urlForAlbums = 'http://localhost:8080/albums/';
+const urlForAlbums = 'http://react-music.cfapps.io/albums/';
 
 class AppBody extends Component {
 
