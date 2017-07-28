@@ -29,6 +29,7 @@ class AppBody extends Component {
                 <h1 className="pvxxl">Albums</h1>
                 <AppModal/>
                 <AlbumList/>
+                <div className="pbxxxxl"/>
             </div>
         )
     };

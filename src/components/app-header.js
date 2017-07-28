@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Icon} from "pui-react-iconography";
+import {Dropdown, DropdownItem} from "pui-react-dropdowns";
 
 class AppHeader extends Component {
     render() {

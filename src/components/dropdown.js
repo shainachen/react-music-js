@@ -67,16 +67,17 @@ class DropdownMenu extends Component {
 
     render() {
         return (
-            <td className="form-group plxxxxl">
-                <Dropdown icon='more_vert' menuAlign='left' className="dropdownIcon" size="small">
-                    <DropdownItem onClick={() => this.setState({
+            <td>
+                <div className="form-group mbn" style={{float: "right"}}>
+                <Dropdown icon='more_vert' menuAlign='right' className="dropdownIcon" size="small">
+                    <DropdownItem style={{textAlign: "left"}} onClick={() => this.setState({
                         modalOpen: true,
                         titleInput: this.props.rowDatum.name,
                         artistInput: this.props.rowDatum.artist,
                         yearInput: this.props.rowDatum.year,
                         genreInput: this.props.rowDatum.genre
                     })} >Edit</DropdownItem>
-                    <DropdownItem onClick={() => {this.deleteAlbum()}}>Delete</DropdownItem>
+                    <DropdownItem style={{textAlign: "left"}} onClick={() => {this.deleteAlbum()}}>Delete</DropdownItem>
                 </Dropdown>
                 <BaseModal acquireFocus={false}
                            title='Edit an album'
@@ -125,6 +126,7 @@ class DropdownMenu extends Component {
                         </PrimaryButton>
                     </ModalFooter>
                 </BaseModal>
+                </div>
             </td>
         );
     }
