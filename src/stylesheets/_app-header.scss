@@ -20,5 +20,15 @@
 }
 
 .app-info .icon-info_outline {
-  fill: white;
+  fill: white !important;
+}
+
+.app-info > button {
+  border: hidden !important;
+  background-color: transparent !important;
+}
+
+.info-contents {
+  color: $dark-2;
+  font-size: small !important;
 }

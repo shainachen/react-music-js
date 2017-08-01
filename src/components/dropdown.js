@@ -36,7 +36,6 @@ class DropdownMenu extends Component {
         });
         const newData = await DataFetcher.fetch(urlForAlbums);
         return this.context.$store.set({rawData: newData})
-
     }
 
     async editAlbum( ) {
