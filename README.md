@@ -14,11 +14,26 @@ To begin, clone this repository onto your machine.
 In order to connect your frontend to your backend API, locate the following files in `./src/components`:
 
 * app-body.js
+* app-header.js
 * app-modal.js
 * dropdown.js
 
 Find the variable `urlForAlbums` at the top of each file. Replace each URL with the `/albums` endpoint with your own API
 (created with [React Music Backend](https://github.com/shainachen/react-music)).
+
+You will likely have to install a few modules to run the app successfully. Though the modules you must install depend on
+what you have previously installed, possible uninstalled modules include:
+
+* `npm-run-all`
+* `react`
+* `react-DOM`
+* `react-scripts`
+* `node-sass-chokidar`
+* `prop-types` 
+* various Pivotal UI React modules
+
+You can install all PUI CSS files with `pui-css-all`. It is easiest to install these modules using `npm install` in
+your terminal.
 
 ## Running the Application Locally
 
@@ -28,7 +43,8 @@ You can run some commands inside the project folder:
 These commands will run the app in development mode.
 The application will be started on the default port [http://localhost:3000](http://localhost:3000).
 
-The page will reload if you make edits; build errors and lint warnings will appear in the console.
+The page will reload if you make edits; build errors and lint warnings will appear in the console. If you are met with
+errors when running the app for the first time, it is likely you are missing a module.
 
 ### `npm test` or `yarn test`
 These commands will run the test watcher in an interactive mode.

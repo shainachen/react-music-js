@@ -43,10 +43,10 @@ class AppHeader extends Component {
                     </div>
                     <div className="col col-fixed col-middle header-text">
                         <div className="form-group">
-                             <Dropdown className="app-info pvl" icon="info_outline" menuAlign="right">
-                                 <DropdownItem className="info-contents" style={{textAlign: "left"}}><strong>Profiles:</strong> {this.state.profiles}</DropdownItem>
-                                 <DropdownItem className="info-contents" style={{textAlign: "left"}}><strong>Services:</strong> {this.state.services}</DropdownItem>
-                             </Dropdown>
+                            <Dropdown className="app-info pvl" icon="info_outline" menuAlign="right">
+                                <DropdownItem className="info-contents" style={{textAlign: "left"}}><strong>Profiles:</strong> {this.state.profiles}</DropdownItem>
+                                <DropdownItem className="info-contents" style={{textAlign: "left"}}><strong>Services:</strong> {this.state.services}</DropdownItem>
+                            </Dropdown>
                         </div>
                     </div>
                 </div>
